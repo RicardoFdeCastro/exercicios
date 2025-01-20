@@ -1,0 +1,28 @@
+import json
+
+# Exemplo de dados JSON
+dados = """
+[
+    {"dia": 1, "faturamento": 221.35},
+    {"dia": 2, "faturamento": 300.20},
+    {"dia": 3, "faturamento": 0.0},
+    {"dia": 4, "faturamento": 50.50},
+    {"dia": 5, "faturamento": 0.0},
+    {"dia": 6, "faturamento": 400.0}
+]
+"""
+
+faturamento = json.loads(dados)
+
+# Filtrar apenas dias com faturamento
+faturamento_valores = [dia["faturamento"] for dia in faturamento if dia["faturamento"] > 0]
+
+menor = min(faturamento_valores)
+maior = max(faturamento_valores)
+media = sum(faturamento_valores) / len(faturamento_valores)
+
+dias_acima_da_media = len([valor for valor in faturamento_valores if valor > media])
+
+print(f"Menor valor de faturamento: R$ {menor:.2f}")
+print(f"Maior valor de faturamento: R$ {maior:.2f}")
+print(f"Número de dias com faturamento acima da média: {dias_acima_da_media}")
